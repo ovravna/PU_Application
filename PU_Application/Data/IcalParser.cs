@@ -1,24 +1,42 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Text;
-using System.Threading.Tasks;
+using Ical.Net;
 using Ical.Net.DataTypes;
 using Ical.Net.Interfaces;
 using Ical.Net.Interfaces.Components;
-using Syncfusion.Windows.Controls;
-using Calendar = Ical.Net.Calendar;
+using Environment = Android.OS.Environment;
 
-namespace Analyze_2017.backend.telemetry
+namespace PU_Application.Droid.Data
 {
     public class IcalParser
     {
 
         public static void Parse() {
-//                        var calendars = Calendar.LoadFromFile(@"C:\Users\Ole\Source\Repos\RevolveAnalyze2017\Revolve Analyze\Analyze 2017\res\cal.ics");
+            IICalendarCollection calendars;
+            var path = @"/sdcard/Download/cal.ics";
 
-//            IICalendarCollection calendars = ICalendar.LoadFromFile(@"Business.ics");
+//            Downloader.Download(path);
+            calendars = Calendar.LoadFromFile(path);
+
+
+//            try
+//            {
+//                calendars = Calendar.LoadFromFile(path);
+//                
+//            }
+//            catch (Exception e) {
+//                Downloader.Download(path);
+//                calendars = Calendar.LoadFromFile(path);
+//            }
+
+
+
+
+
+
+
+            //            IICalendarCollection calendars = ICalendar.LoadFromFile(@"Business.ics");
 
             var occurrences = calendars.GetOccurrences(DateTime.Today, DateTime.Today.AddDays(1));
 
@@ -27,7 +45,7 @@ namespace Analyze_2017.backend.telemetry
 //                DateTime occurrenceTime = occurrence.Period.StartTime.Local;
                 IRecurringComponent rc = occurrence.Source as IRecurringComponent;
                 if (rc != null)
-                    Console.WriteLine($"{rc.Summary} {rc.Start} : {rc.Description} : {rc}");
+                    Console.WriteLine($"Kake! {rc.Summary} {rc.Start} : {rc.Description} : {rc}");
             }
 
 

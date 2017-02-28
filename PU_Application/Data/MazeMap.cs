@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text;
-using Android.Graphics;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace PU_Application.Data
+namespace PU_Application.Droid.Data
 {
     class MazeMap
     {

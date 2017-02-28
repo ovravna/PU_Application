@@ -7,7 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Content;
-using PU_Application.Data;
+using PU_Application.Droid.Data;
 
 namespace PU_Application.Droid
 {
@@ -16,6 +16,10 @@ namespace PU_Application.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            Console.WriteLine("Ninja!");
+
+            IcalParser.Parse();
+
             ToolbarResource = Resource.Layout.toolbar;
             TabLayoutResource = Resource.Layout.tabs;
 

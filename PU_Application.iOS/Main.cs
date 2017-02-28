@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 using Foundation;
+using PU_Application.Droid.Data;
 using UIKit;
 
 namespace PU_Application.iOS
@@ -14,7 +16,11 @@ namespace PU_Application.iOS
         {
             // if you want to use a different Application Delegate class from "AppDelegate"
             // you can specify it here.
-            UIApplication.Main(args, null, "AppDelegate");
+            Console.WriteLine("Ninja!");
+
+            IcalParser.Parse();
+
+//            UIApplication.Main(args, null, "AppDelegate");
         }
     }
 }

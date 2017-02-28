@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using HtmlAgilityPack;
 
-namespace Analyze_2017.backend.telemetry
+namespace PU_Application.Droid.Data
 {
     public class HtmlReader
     {
@@ -18,8 +18,10 @@ namespace Analyze_2017.backend.telemetry
 
             string htmlString = new WebClient().DownloadString(url);
             document.LoadHtml(htmlString);
-            var node = document.DocumentNode.
-                .SelectNodes("html").FindFirst("body");
+            var node = document.DocumentNode
+                .ChildNodes["html"].ChildNodes["body"];
+
+//                .SelectNodes("html").FindFirst("body");
 
             var bd = node.ChildNodes.First(n => n.Id == "bd");
             var schedule = bd.ChildNodes["table"];

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Linq;k
+using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 
-namespace Analyze_2017.backend.telemetry
+namespace PU_Application.Droid.Data
 {
     public class JsonReader
     {
