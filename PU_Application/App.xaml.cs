@@ -20,10 +20,12 @@ namespace PU_Application
             // Loads all reasources from App.xaml
             InitializeComponent();
 
-            if (DependencyService.Get<IStoreManager>().UseAuth && Settings.IsLoggedIn)
-                GoToMainPage();
-            else
-                GoToLogin();
+            GoToMainPage();
+
+
+//            if (DependencyService.Get<IStoreManager>().UseAuth && Settings.IsLoggedIn)
+//            else
+//                GoToLogin();
         }
 
         public static void GoToMainPage()

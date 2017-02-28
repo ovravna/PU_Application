@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PU_Application.Droid.Data;
 using Xamarin.Forms;
 
 namespace PU_Application.ViewModel
@@ -17,10 +18,10 @@ namespace PU_Application.ViewModel
         public Action<ItemDetailViewModel> OnNavigateToDetails { get; set; }
         public BrowseItemsViewModel()
         {
-            Title = "Browse";
-            Items = new ObservableRangeCollection<Item>();
-            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
-            GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
+            Title = "Events";
+            Items = IcalParser.Parse();
+//            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
+//            GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
         }
 
         public Command LoadItemsCommand { get;}
