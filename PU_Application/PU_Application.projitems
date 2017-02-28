@@ -12,6 +12,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Downloader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\HtmlReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\IcalParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\JsonReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\MazeMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MessagingCenterAlert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ObservableObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ObservableRangeCollection.cs" />
@@ -108,5 +113,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Tools\" />
   </ItemGroup>
 </Project>
