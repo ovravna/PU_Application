@@ -16,18 +16,18 @@ namespace PU_Application.Droid.Data
             var path = @"/sdcard/Download/cal.ics";
 
 //            Downloader.Download(path);
-            calendars = Calendar.LoadFromFile(path);
+//            calendars = Calendar.LoadFromFile(path);
 
 
-//            try
-//            {
-//                calendars = Calendar.LoadFromFile(path);
-//                
-//            }
-//            catch (Exception e) {
-//                Downloader.Download(path);
-//                calendars = Calendar.LoadFromFile(path);
-//            }
+            try
+            {
+                calendars = Calendar.LoadFromFile(path);
+                
+            }
+            catch (Exception e) {
+                Downloader.Download(path);
+                calendars = Calendar.LoadFromFile(path);
+            }
 
 
 

@@ -21,7 +21,7 @@ namespace PU_Application.ViewModel
             Title = "Events";
             Items = IcalParser.Parse();
 //            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
-//            GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
+            GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
         }
 
         public Command LoadItemsCommand { get;}
