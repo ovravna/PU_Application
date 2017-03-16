@@ -10,7 +10,6 @@ namespace PU_Application.Droid.Data
 
             var url = "https://ntnu.1024.no/2017/spring/ravna/ical/";
 
-//            var path = @"C:\Users\Ole\Source\Repos\RevolveAnalyze2017\Revolve Analyze\Analyze 2017\res\cal.ics";
 
             var myWebClient = new WebClient();
             try {
