@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PU_Application.Data;
 using PU_Application.Droid.Data;
 using Xamarin.Forms;
 
@@ -19,7 +20,7 @@ namespace PU_Application.ViewModel
         public BrowseItemsViewModel()
         {
             Title = "Events";
-            Items = IcalParser.Parse();
+            Items = EventParser.Parse();
 //            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
             GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
         }

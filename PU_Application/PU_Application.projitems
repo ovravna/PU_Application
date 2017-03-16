@@ -13,6 +13,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Data\Downloader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\EventParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\HtmlReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\IcalParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\JsonReader.cs" />

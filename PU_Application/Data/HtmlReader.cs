@@ -12,9 +12,11 @@ namespace PU_Application.Droid.Data
         static string[] days = {"mandag", "tirsdag", "onsdag", "torsdag", "fredag"};
 
 
-        public static void Run() {
+        public static Dictionary<string, Lecture> GetLectures() {
+            var lectures = new Dictionary<string, Lecture>();
+
             var document = new HtmlDocument();
-//            var downloader = new HttpDownloader(url, null, null);
+//            var downloader = new HttpDownloader(url, null, null); 
 
             string htmlString = new WebClient().DownloadString(url);
             document.LoadHtml(htmlString);
@@ -40,41 +42,24 @@ namespace PU_Application.Droid.Data
 
             var day = 0;
 
-//            if (filteredTable == null) {
-//                Console.WriteLine("kake!");
-//                return;
-//            }
-
             foreach (var tuple in oddEvenList) {
 
                 foreach (var tr in new [] {tuple.Item1, tuple.Item2}) {
                     var tbl = tr.ChildNodes.Where(n => n.Name != "#text");
                     foreach (var child in tbl)
                     {
-
                         if (!child.HasAttributes)
-                        {
                             continue;
-                        }
 
                         var classAttribute = child.Attributes["class"].Value;
 
-
                         if (classAttribute.Contains("time"))
-                        {
                             continue;
-                        }
 
                         if (classAttribute.Contains("lecture"))
                         {
-//                            Console.WriteLine($"{child.Attributes["title"].Value} {days[day]}");
-
-                            var l = GetLecture(child, day);
-
-                            Console.WriteLine(l.navn);
-
-
-
+                            var lecture = GetLecture(child, day);
+                            lectures.Add(lecture.id, lecture);
                         }
 
                         if (!classAttribute.Contains("last")) continue;
@@ -82,27 +67,28 @@ namespace PU_Application.Droid.Data
                         {
                             if (!classAttribute.Contains("lecture")) {
                                 continue;
-
                             }
                         }
                         day++;
                     }
-                    if (tr.Attributes["class"].Value.Contains("odd")) {
+                    if (tr.Attributes["class"].Value.Contains("odd"))
                         day = 0;
-                    }
                 }
-
-
             }
+
+            return lectures;
         }
 
         private static Lecture GetLecture(HtmlNode node, int day) {
             var name = node.Attributes["title"].Value;
+            var id = node.Attributes["class"].Value.Split(' ').First(n => n.StartsWith("lecture-")).Replace("lecture-", "");
+
             var children = node.ChildNodes
                 .Where(n => n.HasAttributes)
                 .First(n => n.Attributes["class"].Value == "wrapper")
                 .ChildNodes
                 .Where(n => n.HasAttributes);
+
             var room = children.First(n => n.Attributes["class"].Value == "room");
             var mazeUrl = room.ChildNodes.First(n => n.Name == "a").Attributes["href"].Value;
             var roomName = room.FirstChild.InnerText;
@@ -115,6 +101,7 @@ namespace PU_Application.Droid.Data
 
 
             return new Lecture {
+                id = id,
                 navn = name,
                 tid = time,
                 mazeUrl = mazeUrl,
@@ -127,7 +114,8 @@ namespace PU_Application.Droid.Data
 
     }
 
-    struct Lecture {
+    public struct Lecture {
+        public string id;
         public string navn;
         public string tid;
         public string rom;

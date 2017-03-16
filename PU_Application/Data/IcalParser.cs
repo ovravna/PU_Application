@@ -7,6 +7,8 @@ using Ical.Net.Interfaces.Components;
 using PU_Application.Helpers;
 using PU_Application.Model;
 using System.Linq;
+using System.IO;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace PU_Application.Droid.Data
 {
@@ -17,27 +19,24 @@ namespace PU_Application.Droid.Data
             IICalendarCollection calendars;
             var path = @"/sdcard/Download/cal.ics";
 
-//            Downloader.Download(path);
-//            calendars = Calendar.LoadFromFile(path);
+//            var dir = Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "/PU_Application";
+//
+//            if (!Directory.Exists(dir)) {
+//                Directory.CreateDirectory(dir);
+//            }
+//
+//            var path = dir + "/cal.ics";
 
 
-            try
-            {
+            try {
                 calendars = Calendar.LoadFromFile(path);
-                
+
             }
             catch (Exception e) {
                 Downloader.Download(path);
                 calendars = Calendar.LoadFromFile(path);
             }
 
-
-
-
-
-
-
-            //            IICalendarCollection calendars = ICalendar.LoadFromFile(@"Business.ics");
 
             var occurrences = calendars.GetOccurrences(DateTime.Now, DateTime.Today.AddDays(7));
             

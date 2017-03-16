@@ -12,8 +12,9 @@
     
     <ScrollView Grid.Row="0" Padding="20">
       <StackLayout Spacing="20" Padding="0">
-        <Label Text="{Binding Item.Text}" FontSize="Medium"/>
-        <Label Text="{Binding Item.Description}" FontSize="Small"/>
+                <Label Text="{Binding Item.Text}" FontSize="Medium"/>
+                <Label Text="{Binding Item.MazeUrl}" FontSize="Medium"/>
+                <Label Text="{Binding Item.Description}" FontSize="Small"/>
       </StackLayout>
     </ScrollView>
 

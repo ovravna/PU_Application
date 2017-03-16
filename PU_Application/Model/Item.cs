@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PU_Application.Droid.Data;
 
 namespace PU_Application.Model
 {
@@ -13,6 +14,23 @@ namespace PU_Application.Model
         public Item() : base()
         { 
         }
+
+        string mazeUrl = string.Empty;
+
+        Lecture lecture;
+
+        public Lecture Lecture
+        {
+            get { return lecture; }
+            set { SetProperty(ref lecture, value); }
+        } 
+
+        public string MazeUrl
+        {
+            get { return mazeUrl; }
+            set { SetProperty(ref mazeUrl, value); }
+        }
+
         /// <summary>
         /// Private backing field to hold the text
         /// </summary>
