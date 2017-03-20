@@ -9,58 +9,81 @@ using Xamarin.Forms;
 
 namespace PU_Application.ViewModel
 {
-    public class ItemDetailViewModel : ViewModelBase
-    {
-        public Action<Item> OnFinished { get; set; }
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
-        {
-            Title = item.Text;
-            Item = item;
-            SaveCommand = new Command(async () => await ExecuteSaveCommand());
-        }
+	public class ItemDetailViewModel : ViewModelBase
+	{
+		public Action<Item> OnFinished { get; set; }
+		public Action<WebViewViewModel> OnNavigateToWebView { get; set; }
+		public Item Item { get; set; }
+		public ObservableRangeCollection<Item> Items { get; }
+		public ItemDetailViewModel(Item item)
+		{
+			Title = item.Text;
+			Item = item;
+			Items = Droid.Data.IcalParser.Parse();
+			SaveCommand = new Command(async () => await ExecuteSaveCommand());
+			GoToMazeMapCommand = new Command<string>(ExecuteGoToMazeMapCommand);
 
-        int quantity = 1;
-        public int Quantity
-        {
-            get { return quantity; }
-            set { SetProperty(ref quantity, value); }
-        }
 
-        public Command SaveCommand { get; }
+		}
 
-        async Task ExecuteSaveCommand()
-        {
-            if (IsBusy)
-                return;
+		int quantity = 1;
+		public int Quantity
+		{
+			get { return quantity; }
+			set { SetProperty(ref quantity, value); }
+		}
 
-            IsBusy = true;
+		public Command<string> GoToMazeMapCommand { get; }
+		WebViewViewModel webViewViewModel;
+		void ExecuteGoToMazeMapCommand(string id)
+		{
+			if (IsBusy)
+				return;
 
-            var newItem = new MyItem
-            {
-                Text = Item.Text,
-                Description = Item.Description,
-                Quantity = Quantity
-            };
 
-            try
-            {
-                if (!Settings.IsLoggedIn)
-                {
-                    if (!await LoginViewModel.TryLoginAsync(StoreManager))
-                        return;
-                }
+			if (Item == null)
+				return;
 
-                await StoreManager.MyItemStore.InsertAsync(newItem);
-                MyItemsViewModel.IsDirty = true;
+			webViewViewModel = new WebViewViewModel(Item);
+			webViewViewModel.OnFinished += OnFinished;
 
-                IsBusy = false;
-                OnFinished?.Invoke(Item);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-    }
+			OnNavigateToWebView(webViewViewModel);
+		}
+
+		public Command SaveCommand { get; }
+
+		async Task ExecuteSaveCommand()
+		{
+			if (IsBusy)
+				return;
+
+			IsBusy = true;
+
+			var newItem = new MyItem
+			{
+				Text = Item.Text,
+				Description = Item.Description,
+				Quantity = Quantity
+			};
+
+			try
+			{
+				if (!Settings.IsLoggedIn)
+				{
+					if (!await LoginViewModel.TryLoginAsync(StoreManager))
+						return;
+				}
+
+				await StoreManager.MyItemStore.InsertAsync(newItem);
+				MyItemsViewModel.IsDirty = true;
+
+				IsBusy = false;
+				OnFinished?.Invoke(Item);
+			}
+			finally
+			{
+				IsBusy = false;
+			}
+		}
+	}
 }
