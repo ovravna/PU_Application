@@ -63,9 +63,10 @@ namespace PU_Application.Droid.Data
                 return null;
             }
 
+            var time = $"{rc.Start.AsSystemLocal.ToShortTimeString()} | {rc.Start.Value.ToShortTimeString()} | {rc.Start.AsSystemLocal.ToLongDateString()}";
 
             var item = new Item {
-                Description = rc.Start.AsSystemLocal.ToLongDateString(),
+                Description = time,
                 Text = rc.Description,
                 Id = rc.Uid,
             };

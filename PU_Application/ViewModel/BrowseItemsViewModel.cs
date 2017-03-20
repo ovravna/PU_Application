@@ -66,6 +66,7 @@ namespace PU_Application.ViewModel
 
             var selectedItem = Items.FirstOrDefault(i => i.Id == id);
 
+
             detailsViewModel = new ItemDetailViewModel(selectedItem);
             detailsViewModel.OnFinished += OnFinished;
 
