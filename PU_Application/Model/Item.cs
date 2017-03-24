@@ -22,7 +22,7 @@ namespace PU_Application.Model
         Lecture lecture;
 		String time;
 		String day;
-		String rom;
+		String room;
 
         public Lecture Lecture
         {
@@ -44,8 +44,8 @@ namespace PU_Application.Model
 
 		public string Room
 		{
-			get { return rom; }
-			set { SetProperty(ref rom, value); }
+			get { return room; }
+			set { SetProperty(ref room, value); }
 		}
 
 		public string Day

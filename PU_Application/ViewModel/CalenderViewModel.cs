@@ -29,6 +29,26 @@ namespace PU_Application.ViewModel
 		{
 			Title = "Calender";
 			Items = EventParser.Parse();
+			int i = 0;
+			foreach (Item item in Items)
+			{
+				if (item.Day.Equals("mandag"))
+					Monday.Add(item);
+				if (item.Day.Equals("tirsdag"))
+					Tuesday.Add(item);
+				if (item.Day.Equals("onsdag"))
+					Wednesday.Add(item);
+				if (item.Day.Equals("torsdag"))
+					Thursday.Add(item);
+				if (item.Day == "fredag")
+					Friday.Add(item);
+				if (item.Day.Equals("lørdag"))
+					Saturday.Add(item);
+				if (item.Day.Equals("søndag"))
+					Sunday.Add(item);
+				if (i > 5)
+					break;
+			}
 			GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
 		}
 
@@ -44,6 +64,7 @@ namespace PU_Application.ViewModel
 			{
 				Items.Clear();
 				var items = await StoreManager.ItemStore.GetItemsAsync(true);
+				var i = 0;
 				Items.ReplaceRange(items);
 				foreach (Item item in Items)
 				{
@@ -55,12 +76,14 @@ namespace PU_Application.ViewModel
 						Wednesday.Add(item);
 					if (item.Day.Equals("torsdag"))
 						Thursday.Add(item);
-					if (item.Day.Equals("fredag"))
+					if (item.Day == "fredag")
 						Friday.Add(item);
 					if (item.Day.Equals("lørdag"))
 						Saturday.Add(item);
 					if (item.Day.Equals("søndag"))
 						Sunday.Add(item);
+					if (i > 5)
+						break;
 				}
 			}
 			catch (Exception ex)

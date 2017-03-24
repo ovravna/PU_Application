@@ -23,6 +23,7 @@
     <StackLayout 
       AbsoluteLayout.LayoutFlags="All" 
       AbsoluteLayout.LayoutBounds="0,0,1,1">
+		<Label Text="Mon" HorizontalTextAlignment="Center" TextColor="Black"/>
       <ListView ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
@@ -44,11 +45,11 @@
                  <Label Grid.Column="1" Text="{Binding Text}"
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemTextStyle}"
-                       FontSize="8"/>
+                       FontSize="8" TextColor="Black"/>
                  <Label Grid.Column="0" Text="{Binding Time}"
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemDetailTextStyle}"
-                       FontSize="8"/>
+                       FontSize="8" TextColor="Black"/>
 				</Grid>
               </StackLayout>
             </ViewCell>
@@ -63,5 +64,275 @@
             <ActivityIndicator IsRunning="{Binding IsBusy}" Color="{DynamicResource Accent}"/>
        </StackLayout>
     </AbsoluteLayout>
+	<AbsoluteLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <StackLayout 
+      AbsoluteLayout.LayoutFlags="All" 
+      AbsoluteLayout.LayoutBounds="0,0,1,1">
+		<Label Text="Tue" HorizontalTextAlignment="Center" TextColor="Black"/>
+      <ListView ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+				ItemSelected="OnItemSelected"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                x:Name="ListViewItems1">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Padding="10">
+				<Grid> 
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>						
+					</Grid.ColumnDefinitions>					
+                 <Label Grid.Column="1" Text="{Binding Text}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+                 <Label Grid.Column="0" Text="{Binding Time}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+				</Grid>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout> 
+    <StackLayout IsVisible="{Binding IsBusy}"
+                         Padding="32"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="{DynamicResource Accent}"/>
+       </StackLayout>
+    </AbsoluteLayout>
+	<AbsoluteLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <StackLayout 
+      AbsoluteLayout.LayoutFlags="All" 
+      AbsoluteLayout.LayoutBounds="0,0,1,1">
+		<Label Text="Wed" HorizontalTextAlignment="Center" TextColor="Black"/>
+      <ListView ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+				ItemSelected="OnItemSelected"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                x:Name="ListViewItems2">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Padding="10">
+				<Grid> 
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>						
+					</Grid.ColumnDefinitions>					
+                 <Label Grid.Column="1" Text="{Binding Text}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+                 <Label Grid.Column="0" Text="{Binding Time}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+				</Grid>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout> 
+    <StackLayout IsVisible="{Binding IsBusy}"
+                         Padding="32"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="{DynamicResource Accent}"/>
+       </StackLayout>
+    </AbsoluteLayout>
+	<AbsoluteLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <StackLayout 
+      AbsoluteLayout.LayoutFlags="All" 
+      AbsoluteLayout.LayoutBounds="0,0,1,1">
+		<Label Text="Thu" HorizontalTextAlignment="Center" TextColor="Black"/>
+      <ListView ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+				ItemSelected="OnItemSelected"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                x:Name="ListViewItems3">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Padding="10">
+				<Grid> 
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>						
+					</Grid.ColumnDefinitions>					
+                 <Label Grid.Column="1" Text="{Binding Text}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+                 <Label Grid.Column="0" Text="{Binding Time}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+				</Grid>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout> 
+    <StackLayout IsVisible="{Binding IsBusy}"
+                         Padding="32"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="{DynamicResource Accent}"/>
+       </StackLayout>
+    </AbsoluteLayout>
+	<AbsoluteLayout Grid.Row="2" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <StackLayout 
+      AbsoluteLayout.LayoutFlags="All" 
+      AbsoluteLayout.LayoutBounds="0,0,1,1">
+		<Label Text="Fri" HorizontalTextAlignment="Center" TextColor="Black"/>
+      <ListView ItemsSource="{Binding Friday}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+				ItemSelected="OnItemSelected"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                x:Name="ListViewItems4">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Padding="10">
+				<Grid> 
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>						
+					</Grid.ColumnDefinitions>					
+                 <Label Grid.Column="1" Text="{Binding Text}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+                 <Label Grid.Column="0" Text="{Binding Time}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+				</Grid>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout> 
+    <StackLayout IsVisible="{Binding IsBusy}"
+                         Padding="32"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="{DynamicResource Accent}"/>
+       </StackLayout>
+    </AbsoluteLayout>
+	<AbsoluteLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <StackLayout 
+      AbsoluteLayout.LayoutFlags="All" 
+      AbsoluteLayout.LayoutBounds="0,0,1,1">
+		<Label Text="Sat" HorizontalTextAlignment="Center" TextColor="Black"/>
+      <ListView ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+				ItemSelected="OnItemSelected"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                x:Name="ListViewItems5">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Padding="10">
+				<Grid> 
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>						
+					</Grid.ColumnDefinitions>					
+                 <Label Grid.Column="1" Text="{Binding Text}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+                 <Label Grid.Column="0" Text="{Binding Time}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+				</Grid>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout> 
+    <StackLayout IsVisible="{Binding IsBusy}"
+                         Padding="32"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="{DynamicResource Accent}"/>
+       </StackLayout>
+    </AbsoluteLayout>
+	<AbsoluteLayout Grid.Row="3" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <StackLayout 
+      AbsoluteLayout.LayoutFlags="All" 
+      AbsoluteLayout.LayoutBounds="0,0,1,1">
+		<Label Text="Sun" HorizontalTextAlignment="Center" TextColor="Black"/>
+      <ListView ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+				ItemSelected="OnItemSelected"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                x:Name="ListViewItems6">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Padding="10">
+				<Grid> 
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>						
+					</Grid.ColumnDefinitions>					
+                 <Label Grid.Column="1" Text="{Binding Text}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+                 <Label Grid.Column="0" Text="{Binding Time}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       FontSize="8" TextColor="Black"/>
+				</Grid>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout> 
+    <StackLayout IsVisible="{Binding IsBusy}"
+                         Padding="32"
+                         AbsoluteLayout.LayoutFlags="PositionProportional"
+                         AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" Color="{DynamicResource Accent}"/>
+       </StackLayout>
+    </AbsoluteLayout>	
   </Grid>
 </ContentPage>
