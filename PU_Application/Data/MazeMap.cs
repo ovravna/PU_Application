@@ -12,9 +12,10 @@ namespace PU_Application.Droid.Data
         public static void GetJson(string url) {
             var json = WebClient.DownloadString(url);
 
-            var k = JObject.Parse(json);
+            var maze = JObject.Parse(json);
+            
 
-            Console.WriteLine(k["pois"]);
+            Console.WriteLine(maze["pois"]);
 
         }
 
