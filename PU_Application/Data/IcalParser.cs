@@ -39,7 +39,8 @@ namespace PU_Application.Droid.Data
 
 
             var occurrences = calendars.GetOccurrences(DateTime.Now, DateTime.Today.AddDays(7));
-            
+
+
 
             var range = new ObservableRangeCollection<Item>();
             
@@ -68,6 +69,7 @@ namespace PU_Application.Droid.Data
                 Description = rc.Start.AsSystemLocal.ToLongDateString(),
                 Text = rc.Description,
                 Id = rc.Uid,
+				Date = rc.Start,
             };
 
             return item;

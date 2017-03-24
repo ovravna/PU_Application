@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PU_Application.View.MainTabPageiOS"
@@ -25,9 +25,9 @@
       BarBackgroundColor="{DynamicResource Primary}"
       BarTextColor="White"
       Icon="tab_about.png"
-      Title="About">
+      Title="Calender">
     <x:Arguments>
-      <pages:AboutPage/>
+      <pages:CalenderPage/>
     </x:Arguments>
   </NavigationPage>
 </TabbedPage>

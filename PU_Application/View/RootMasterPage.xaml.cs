@@ -44,7 +44,7 @@ namespace PU_Application.View
             {
                     new MasterMenuItem { Id = 0, Title = "Browse", TargetType = typeof(BrowseItemsPage) },
                     new MasterMenuItem { Id = 1, Title = "My Items", TargetType = typeof(MyItemsPage) },
-                    new MasterMenuItem { Id = 2, Title = "About", TargetType = typeof(AboutPage) },
+					new MasterMenuItem { Id = 2, Title = "Calender", TargetType = typeof(CalenderPage) },
             });
         }
         public event PropertyChangedEventHandler PropertyChanged;

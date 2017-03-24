@@ -19,6 +19,9 @@ namespace PU_Application.Data
                 var idNum = item.Id.Split('-')[1];
                 item.Lecture = lectures[idNum];
                 item.MazeUrl = item.Lecture.mazeUrl;
+				item.Time = item.Lecture.tid;
+				item.Day = item.Lecture.day;
+				item.Room = item.Lecture.rom;
             }
 
 

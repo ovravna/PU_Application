@@ -12,7 +12,6 @@ namespace PU_Application.View
         {
             InitializeComponent();
             BindingContext = viewModel = new BrowseItemsViewModel();
-
             viewModel.OnNavigateToDetails = async (detailsViewModel) =>
             {
                 await Navigation.PushAsync(new DetailPage(detailsViewModel));
