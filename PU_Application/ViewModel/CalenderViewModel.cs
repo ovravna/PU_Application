@@ -17,39 +17,30 @@ namespace PU_Application.ViewModel
 	public class CalenderViewModel : ViewModelBase
 	{
 		public ObservableRangeCollection<Item> Items { get;}
-		public ObservableRangeCollection<Item> Monday { get; }
-		public ObservableRangeCollection<Item> Tuesday { get; }
-		public ObservableRangeCollection<Item> Wednesday { get; }
-		public ObservableRangeCollection<Item> Thursday { get; }
-		public ObservableRangeCollection<Item> Friday { get; }
-		public ObservableRangeCollection<Item> Saturday { get; }
-		public ObservableRangeCollection<Item> Sunday { get; }
+		public IEnumerable<Item> Monday { get; }
+		public IEnumerable<Item> Tuesday { get; }
+		public IEnumerable<Item> Wednesday { get; }
+		public IEnumerable<Item> Thursday { get; }
+		public IEnumerable<Item> Friday { get; set; }
+		public IEnumerable<Item> Saturday { get; }
+		public IEnumerable<Item> Sunday { get; }
 		public Action<ItemDetailViewModel> OnNavigateToDetails { get; set; }
 		public CalenderViewModel()
 		{
 			Title = "Calender";
 			Items = EventParser.Parse();
 			int i = 0;
-			foreach (Item item in Items)
-			{
-				if (item.Day.Equals("mandag"))
-					Monday.Add(item);
-				if (item.Day.Equals("tirsdag"))
-					Tuesday.Add(item);
-				if (item.Day.Equals("onsdag"))
-					Wednesday.Add(item);
-				if (item.Day.Equals("torsdag"))
-					Thursday.Add(item);
-				if (item.Day == "fredag")
-					Friday.Add(item);
-				if (item.Day.Equals("lørdag"))
-					Saturday.Add(item);
-				if (item.Day.Equals("søndag"))
-					Sunday.Add(item);
-				if (i > 5)
-					break;
-			}
-			GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
+
+		    Monday = Items.Where(n => n.Date.DayOfWeek == DayOfWeek.Monday);
+		    Tuesday = Items.Where(n => n.Date.DayOfWeek == DayOfWeek.Tuesday);
+		    Wednesday = Items.Where(n => n.Date.DayOfWeek == DayOfWeek.Wednesday);
+		    Thursday = Items.Where(n => n.Date.DayOfWeek == DayOfWeek.Thursday);
+		    Friday = Items.Where(n => n.Date.DayOfWeek == DayOfWeek.Friday);
+		    Saturday = Items.Where(n => n.Date.DayOfWeek == DayOfWeek.Saturday);
+		    Sunday = Items.Where(n => n.Date.DayOfWeek == DayOfWeek.Sunday);
+
+
+		    GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
 		}
 
 		public Command LoadItemsCommand { get; }
@@ -66,25 +57,25 @@ namespace PU_Application.ViewModel
 				var items = await StoreManager.ItemStore.GetItemsAsync(true);
 				var i = 0;
 				Items.ReplaceRange(items);
-				foreach (Item item in Items)
-				{
-					if (item.Day.Equals("mandag"))
-						Monday.Add(item);
-					if (item.Day.Equals("tirsdag"))
-						Tuesday.Add(item);
-					if (item.Day.Equals("onsdag"))
-						Wednesday.Add(item);
-					if (item.Day.Equals("torsdag"))
-						Thursday.Add(item);
-					if (item.Day == "fredag")
-						Friday.Add(item);
-					if (item.Day.Equals("lørdag"))
-						Saturday.Add(item);
-					if (item.Day.Equals("søndag"))
-						Sunday.Add(item);
-					if (i > 5)
-						break;
-				}
+//				foreach (Item item in Items)
+//				{
+//					if (item.Day.Equals("mandag"))
+//						Monday.Add(item);
+//					if (item.Day.Equals("tirsdag"))
+//						Tuesday.Add(item);
+//					if (item.Day.Equals("onsdag"))
+//						Wednesday.Add(item);
+//					if (item.Day.Equals("torsdag"))
+//						Thursday.Add(item);
+//					if (item.Day == "fredag")
+////						Friday.Add(item);
+//					if (item.Day.Equals("lørdag"))
+//						Saturday.Add(item);
+//					if (item.Day.Equals("søndag"))
+//						Sunday.Add(item);
+//					if (i > 5)
+//						break;
+//				}
 			}
 			catch (Exception ex)
 			{

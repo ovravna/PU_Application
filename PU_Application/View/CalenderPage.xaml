@@ -24,7 +24,7 @@
       AbsoluteLayout.LayoutFlags="All" 
       AbsoluteLayout.LayoutBounds="0,0,1,1">
 		<Label Text="Mon" HorizontalTextAlignment="Center" TextColor="Black"/>
-      <ListView ItemsSource="{Binding Items}"
+      <ListView ItemsSource="{Binding Monday}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
 				ItemSelected="OnItemSelected"
@@ -69,7 +69,7 @@
       AbsoluteLayout.LayoutFlags="All" 
       AbsoluteLayout.LayoutBounds="0,0,1,1">
 		<Label Text="Tue" HorizontalTextAlignment="Center" TextColor="Black"/>
-      <ListView ItemsSource="{Binding Items}"
+      <ListView ItemsSource="{Binding Tuesday}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
 				ItemSelected="OnItemSelected"
@@ -114,7 +114,7 @@
       AbsoluteLayout.LayoutFlags="All" 
       AbsoluteLayout.LayoutBounds="0,0,1,1">
 		<Label Text="Wed" HorizontalTextAlignment="Center" TextColor="Black"/>
-      <ListView ItemsSource="{Binding Items}"
+      <ListView ItemsSource="{Binding Wednesday}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
 				ItemSelected="OnItemSelected"
@@ -159,7 +159,7 @@
       AbsoluteLayout.LayoutFlags="All" 
       AbsoluteLayout.LayoutBounds="0,0,1,1">
 		<Label Text="Thu" HorizontalTextAlignment="Center" TextColor="Black"/>
-      <ListView ItemsSource="{Binding Items}"
+      <ListView ItemsSource="{Binding Thursday}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
 				ItemSelected="OnItemSelected"
@@ -249,7 +249,7 @@
       AbsoluteLayout.LayoutFlags="All" 
       AbsoluteLayout.LayoutBounds="0,0,1,1">
 		<Label Text="Sat" HorizontalTextAlignment="Center" TextColor="Black"/>
-      <ListView ItemsSource="{Binding Items}"
+      <ListView ItemsSource="{Binding Sunday}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
 				ItemSelected="OnItemSelected"
@@ -294,7 +294,7 @@
       AbsoluteLayout.LayoutFlags="All" 
       AbsoluteLayout.LayoutBounds="0,0,1,1">
 		<Label Text="Sun" HorizontalTextAlignment="Center" TextColor="Black"/>
-      <ListView ItemsSource="{Binding Items}"
+      <ListView ItemsSource="{Binding Sunday}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
 				ItemSelected="OnItemSelected"
