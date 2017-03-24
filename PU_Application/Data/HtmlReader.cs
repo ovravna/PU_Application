@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using HtmlAgilityPack;
 
+
 namespace PU_Application.Droid.Data
 {
     public class HtmlReader
@@ -19,11 +20,10 @@ namespace PU_Application.Droid.Data
 //            var downloader = new HttpDownloader(url, null, null); 
 
             string htmlString = new WebClient().DownloadString(url);
+           
             document.LoadHtml(htmlString);
             var node = document.DocumentNode
                 .ChildNodes["html"].ChildNodes["body"];
-
-//                .SelectNodes("html").FindFirst("body");
 
             var bd = node.ChildNodes.First(n => n.Id == "bd");
             var schedule = bd.ChildNodes["table"];
@@ -91,6 +91,8 @@ namespace PU_Application.Droid.Data
 
             var room = children.First(n => n.Attributes["class"].Value == "room");
             var mazeUrl = room.ChildNodes.First(n => n.Name == "a").Attributes["href"].Value;
+            mazeUrl = WebUtility.HtmlDecode(mazeUrl);
+
             var roomName = room.FirstChild.InnerText;
             var type = children.First(n => n.Attributes["class"].Value == "type").InnerText;
 

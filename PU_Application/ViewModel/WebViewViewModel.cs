@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Android.OS;
+using Android.Util;
 using PU_Application.Helpers;
 using PU_Application.Model;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace PU_Application.ViewModel
 {
@@ -26,8 +29,9 @@ namespace PU_Application.ViewModel
 		}
 		public String MazeUrl()
 		{
+            Android.Util.Log.WriteLine(LogPriority.Debug, "URL", Item.MazeUrl);
 			return Item.MazeUrl;
-			}
+		}
 
 }
 }
