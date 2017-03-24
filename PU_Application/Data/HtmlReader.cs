@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using HtmlAgilityPack;
+
 
 namespace PU_Application.Droid.Data
 {
@@ -19,11 +21,10 @@ namespace PU_Application.Droid.Data
 //            var downloader = new HttpDownloader(url, null, null); 
 
             string htmlString = new WebClient().DownloadString(url);
+           
             document.LoadHtml(htmlString);
             var node = document.DocumentNode
                 .ChildNodes["html"].ChildNodes["body"];
-
-//                .SelectNodes("html").FindFirst("body");
 
             var bd = node.ChildNodes.First(n => n.Id == "bd");
             var schedule = bd.ChildNodes["table"];
@@ -90,8 +91,12 @@ namespace PU_Application.Droid.Data
                 .Where(n => n.HasAttributes);
 
             var room = children.First(n => n.Attributes["class"].Value == "room");
-            var mazeUrl = room.ChildNodes.First(n => n.Name == "a").Attributes["href"].Value;
-            var roomName = room.FirstChild.InnerText;
+            var roomNode = room.ChildNodes.First(n => n.Name == "a");
+            var mazeUrl = roomNode.Attributes["href"].Value;
+            mazeUrl = Regex.Replace(mazeUrl, "(.*?.com/)(\\?.*)", n => $"{n.Groups[1]}embed.html{n.Groups[2]}");
+            mazeUrl = WebUtility.HtmlDecode(mazeUrl);
+
+            var roomName = roomNode.InnerText;
             var type = children.First(n => n.Attributes["class"].Value == "type").InnerText;
 
             var time = name.Substring(name.Length - 11);

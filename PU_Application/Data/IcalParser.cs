@@ -8,6 +8,7 @@ using PU_Application.Helpers;
 using PU_Application.Model;
 using System.Linq;
 using System.IO;
+using System.Text.RegularExpressions;
 using Xamarin.Forms.PlatformConfiguration;
 
 namespace PU_Application.Droid.Data
@@ -63,6 +64,7 @@ namespace PU_Application.Droid.Data
             if (rc == null) {
                 return null;
             }
+
 
 
             var item = new Item {
