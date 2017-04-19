@@ -1,60 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using Ical.Net;
 using Ical.Net.DataTypes;
-using Ical.Net.Interfaces;
 using Ical.Net.Interfaces.Components;
 using PU_Application.Helpers;
 using PU_Application.Model;
 using System.Linq;
 using System.IO;
-using Xamarin.Forms.PlatformConfiguration;
 
 namespace PU_Application.Droid.Data
 {
-    public class IcalParser
+    public static class IcalParser
     {
-
         public static ObservableRangeCollection<Item> Parse() {
-            IICalendarCollection calendars;
-            var path = @"/sdcard/Download/cal.ics";
 
-//            var dir = Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms) + "/PU_Application";
-//
-//            if (!Directory.Exists(dir)) {
-//                Directory.CreateDirectory(dir);
-//            }
-//
-//            var path = dir + "/cal.ics";
+            // TODO: username to settting
+            var icalText = Ntnu1024.GetCalendar("ravna");
+            var calendars = Calendar.LoadFromStream(new StringReader(icalText));
 
-
-            try {
-                calendars = Calendar.LoadFromFile(path);
-
-            }
-            catch (Exception e) {
-                Downloader.Download(path);
-                calendars = Calendar.LoadFromFile(path);
-            }
-
-
-            var occurrences = calendars.GetOccurrences(DateTime.Now, DateTime.Today.AddDays(7));
-
-
-
-            var range = new ObservableRangeCollection<Item>();
+            var occurrences = calendars
+                .GetOccurrences(DateTime.Now, DateTime.Today.AddDays(7))
+                .OrderBy(o => o.Source.Start)
+                .Select(ToItem);
             
-            var occ = occurrences.ToList();
-            occ.Sort((n, m) => n.Source.Start.CompareTo(m.Source.Start));
-            
-
-            foreach (Occurrence occurrence in occ)
-            {
-                range.Add(ToItem(occurrence));
-            }
-           
-
-            return range;
+            return new ObservableRangeCollection<Item>(occurrences);
         }
 
         private static Item ToItem(Occurrence occurrence) {
@@ -63,7 +31,6 @@ namespace PU_Application.Droid.Data
             if (rc == null) {
                 return null;
             }
-
 
             var item = new Item {
                 Description = rc.Start.AsSystemLocal.ToLongDateString(),
@@ -74,7 +41,5 @@ namespace PU_Application.Droid.Data
 
             return item;
         }
-
-
     }
 }

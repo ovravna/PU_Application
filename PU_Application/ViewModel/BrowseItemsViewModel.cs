@@ -1,64 +1,28 @@
 ﻿using PU_Application.Helpers;
 using PU_Application.Model;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PU_Application.Data;
-using PU_Application.Droid.Data;
 using Xamarin.Forms;
 
 namespace PU_Application.ViewModel
 {
     public class BrowseItemsViewModel : ViewModelBase
     {
+        private ItemDetailViewModel _detailsViewModel;
+
         public ObservableRangeCollection<Item> Items { get;}
         public Action<ItemDetailViewModel> OnNavigateToDetails { get; set; }
         public BrowseItemsViewModel()
         {
             Title = "Events";
             Items = EventParser.Parse();
-//            LoadItemsCommand = new Command(ExecuteLoadItemsCommand);
             GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
         }
 
-        public Command LoadItemsCommand { get;}
-
-        async void ExecuteLoadItemsCommand()
-        {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-            try
-            {
-                Items.Clear();
-                var items = await StoreManager.ItemStore.GetItemsAsync(true);
-                Items.ReplaceRange(items);
-            }
-            catch (Exception ex)
-            {
-                //Handle exception here
-                Debug.WriteLine(ex);
-                MessagingCenter.Send(new MessagingCenterAlert
-                {
-                    Title = "Error",
-                    Message = "Unable to load items.",
-                    Cancel = "OK"
-                }, "message");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-       
-
         public Command<string> GoToDetailsCommand { get; }
-        ItemDetailViewModel detailsViewModel;
+        
         void ExecuteGoToDetailsCommand(string id)
         {
             if (IsBusy)
@@ -66,16 +30,15 @@ namespace PU_Application.ViewModel
 
             var selectedItem = Items.FirstOrDefault(i => i.Id == id);
 
-            detailsViewModel = new ItemDetailViewModel(selectedItem);
-            detailsViewModel.OnFinished += OnFinished;
+            _detailsViewModel = new ItemDetailViewModel(selectedItem);
+            _detailsViewModel.OnFinished += OnFinished;
 
-            OnNavigateToDetails(detailsViewModel);
+            OnNavigateToDetails(_detailsViewModel);
         }
 
         void OnFinished(Item item)
         {
-            detailsViewModel.OnFinished -= OnFinished;
+            _detailsViewModel.OnFinished -= OnFinished;
         }
-
     }
 }

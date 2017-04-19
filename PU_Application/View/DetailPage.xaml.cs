@@ -1,30 +1,28 @@
 ﻿using PU_Application.Model;
 using PU_Application.ViewModel;
-using System;
-using System.Collections.Generic;
-
 using Xamarin.Forms;
 
 namespace PU_Application.View
 {
 	public partial class DetailPage : ContentPage
 	{
-		ItemDetailViewModel viewModel;
+	    private readonly ItemDetailViewModel _viewModel;
+
 		public DetailPage(ItemDetailViewModel viewModel)
 		{
 			InitializeComponent();
-			BindingContext = this.viewModel = viewModel;
+			BindingContext = _viewModel = viewModel;
 
-			viewModel.OnNavigateToWebView = async (WebViewViewModel) =>
+			viewModel.OnNavigateToWebView = async webViewViewModel =>
 			{
-				await Navigation.PushAsync(new WebViewPage(WebViewViewModel));
+				await Navigation.PushAsync(new MazeMapPage(webViewViewModel));
 			};
-			this.viewModel.OnFinished += OnFinished;
+			_viewModel.OnFinished += OnFinished;
 		}
 
-		async void OnFinished(Item item)
+		private async void OnFinished(Item item)
 		{
-			viewModel.OnFinished -= OnFinished;
+			_viewModel.OnFinished -= OnFinished;
 			await Navigation.PopAsync();
 		}
 	}

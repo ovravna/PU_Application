@@ -4,16 +4,19 @@
              xmlns:pages="clr-namespace:PU_Application.View;assembly=PU_Application"
              x:Class="PU_Application.View.RootMasterDetailPage"
              Title="AppName">
-  <MasterDetailPage.Master>
-    <pages:RootMasterPage x:Name="RootMasterPage" />
-  </MasterDetailPage.Master>
-  <MasterDetailPage.Detail>
-    <NavigationPage
+    
+    <MasterDetailPage.Master>
+        <pages:RootMasterPage x:Name="RootMasterPage" />
+    </MasterDetailPage.Master>
+    
+    <MasterDetailPage.Detail>
+        <NavigationPage
       BarTextColor="White"
       BarBackgroundColor="{StaticResource Primary}">
-      <x:Arguments>
-        <pages:BrowseItemsPage />
-      </x:Arguments>
-    </NavigationPage>
-  </MasterDetailPage.Detail>
+            <x:Arguments>
+                <pages:BrowseItemsPage />
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
+    
 </MasterDetailPage >

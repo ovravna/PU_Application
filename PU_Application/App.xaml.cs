@@ -14,57 +14,17 @@ namespace PU_Application
 {
     public partial class App : Application
     {
-
         public App()
         {
             // Loads all reasources from App.xaml
             InitializeComponent();
-
-            GoToMainPage();
-
-
-//            if (DependencyService.Get<IStoreManager>().UseAuth && Settings.IsLoggedIn)
-//            else
-//                GoToLogin();
-        }
-
-        public static void GoToMainPage()
-        {
-
-#if FlyoutNavigation
-            Current.MainPage = new RootMasterDetailPage();
-#else
-
-            // The root page of your application
-            switch (Device.OS)
-            {
-                case TargetPlatform.iOS:
-                    Current.MainPage = new MainTabPageiOS();
-                    break;
-                default:
-                    Current.MainPage = new NavigationPage(new MainTabPage())
-                    {
-                        BarBackgroundColor = (Color)Current.Resources["Primary"],
-                        BarTextColor = Color.White
-                    };
-                    break;
-            }
-#endif
-        }
-
-        public static void GoToLogin()
-        {
-            Current.MainPage = new NavigationPage(new LoginPage())
-            {
-                BarBackgroundColor = (Color)Current.Resources["Primary"],
-                BarTextColor = Color.White
-            };
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
-            MessagingCenter.Subscribe<MessagingCenterAlert>(this, "message", async (info) =>
+            MainPage = new RootMasterDetailPage();
+
+            MessagingCenter.Subscribe<MessagingCenterAlert>(this, "message", async info =>
             {
                 var task = Current?.MainPage?.DisplayAlert(info.Title, info.Message, info.Cancel);
 
@@ -72,7 +32,7 @@ namespace PU_Application
                     return;
 
                 await task;
-                info?.OnCompleted?.Invoke();
+                info.OnCompleted?.Invoke();
             });
         }
 

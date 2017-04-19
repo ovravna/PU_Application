@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using PU_Application.ViewModel;
+﻿using PU_Application.ViewModel;
 using PU_Application.Model;
-
 using Xamarin.Forms;
 
 namespace PU_Application.View
 {
 	public partial class CalenderPage : ContentPage
 	{
-		CalenderViewModel viewModel;
+	    private readonly CalenderViewModel _viewModel;
+
 		public CalenderPage()
 		{
 			InitializeComponent();
-			BindingContext = viewModel = new CalenderViewModel();
-			viewModel.OnNavigateToDetails = async (detailsViewModel) =>
+			BindingContext = _viewModel = new CalenderViewModel();
+			_viewModel.OnNavigateToDetails = async detailsViewModel =>
 			{
 				await Navigation.PushAsync(new DetailPage(detailsViewModel));
 			};
-
 		}
 
 		void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -27,18 +24,10 @@ namespace PU_Application.View
 			if (item == null)
 				return;
 
-			viewModel.GoToDetailsCommand.Execute(item.Id);
+			_viewModel.GoToDetailsCommand.Execute(item.Id);
 
 			// Manually deselect item
 			ListViewItems.SelectedItem = null;
 		}
-
-		protected override void OnAppearing()
-		{
-			base.OnAppearing();
-			if (viewModel.Items.Count == 0)
-				viewModel.LoadItemsCommand.Execute(null);
-		}
-
 	}
 }

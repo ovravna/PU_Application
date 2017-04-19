@@ -1,29 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 
 namespace PU_Application.View
 {
 	public partial class RootMasterDetailPage : MasterDetailPage
 	{
+	    readonly Dictionary<int, Page> _storedPages;
 
-        Dictionary<int, Page> StoredPages;
 		public RootMasterDetailPage ()
 		{
 			InitializeComponent ();
-            StoredPages = new Dictionary<int, Page>();
+            _storedPages = new Dictionary<int, Page>();
             RootMasterPage.ListView.ItemSelected += ListView_ItemSelected;
 
-            StoredPages.Add(0, Detail);
+            _storedPages.Add(0, Detail);
 
-            this.MasterBehavior = MasterBehavior.Popover;
+            MasterBehavior = MasterBehavior.Popover;
         }
-
-
 
         private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -35,9 +30,9 @@ namespace PU_Application.View
             IsPresented = false;
             await Task.Delay(230);
 
-            if (StoredPages.ContainsKey(item.Id))
+            if (_storedPages.ContainsKey(item.Id))
             {
-                Detail = StoredPages[item.Id];
+                Detail = _storedPages[item.Id];
             }
             else
             {
@@ -50,11 +45,10 @@ namespace PU_Application.View
                     BarBackgroundColor = (Color)Application.Current.Resources["Primary"],
                     BarTextColor = Color.White
                 };
-                StoredPages.Add(item.Id, newPage);
+                _storedPages.Add(item.Id, newPage);
             }
 
             RootMasterPage.ListView.SelectedItem = null;
-            
         }
     }
 }

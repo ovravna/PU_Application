@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PU_Application.Helpers
 {
@@ -20,7 +17,6 @@ namespace PU_Application.Helpers
         /// Initializes a new instance of the System.Collections.ObjectModel.ObservableCollection(Of T) class. 
         /// </summary> 
         public ObservableRangeCollection()
-            : base()
         {
         }
 
@@ -40,7 +36,7 @@ namespace PU_Application.Helpers
         public void AddRange(IEnumerable<T> collection, NotifyCollectionChangedAction notificationMode = NotifyCollectionChangedAction.Add)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             CheckReentrancy();
 
@@ -76,7 +72,7 @@ namespace PU_Application.Helpers
         public void RemoveRange(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             foreach (var i in collection)
                 Items.Remove(i);
@@ -97,11 +93,10 @@ namespace PU_Application.Helpers
         public void ReplaceRange(IEnumerable<T> collection)
         {
             if (collection == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException(nameof(collection));
 
             Items.Clear();
             AddRange(collection, NotifyCollectionChangedAction.Reset);
         }
-
     }
 }
