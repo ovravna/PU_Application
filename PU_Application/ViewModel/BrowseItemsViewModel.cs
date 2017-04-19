@@ -1,7 +1,6 @@
 ﻿using PU_Application.Helpers;
 using PU_Application.Model;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using PU_Application.Data;
 using Xamarin.Forms;
@@ -11,34 +10,64 @@ namespace PU_Application.ViewModel
     public class BrowseItemsViewModel : ViewModelBase
     {
         private ItemDetailViewModel _detailsViewModel;
+        private EventItemViewModel _selectedItem;
 
-        public ObservableRangeCollection<Item> Items { get;}
-        public Action<ItemDetailViewModel> OnNavigateToDetails { get; set; }
         public BrowseItemsViewModel()
         {
             Title = "Events";
-            Items = EventParser.Parse();
+            Items = new ObservableRangeCollection<EventItemViewModel>(EventParser.Parse().Select(e => new EventItemViewModel(e)));
             GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
         }
 
+        public ObservableRangeCollection<EventItemViewModel> Items { get; }
+        public Action<ItemDetailViewModel> OnNavigateToDetails { get; set; }
         public Command<string> GoToDetailsCommand { get; }
-        
-        void ExecuteGoToDetailsCommand(string id)
+
+        public EventItemViewModel SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                if (_selectedItem != null) _selectedItem.IsSelected = false;
+                SetProperty(ref _selectedItem, value);
+                if(value != null) value.IsSelected = true;
+            }
+        }
+
+        private void ExecuteGoToDetailsCommand(string id)
         {
             if (IsBusy)
                 return;
 
-            var selectedItem = Items.FirstOrDefault(i => i.Id == id);
+            var selectedItem = Items.FirstOrDefault(i => i.Item.Id == id);
 
-            _detailsViewModel = new ItemDetailViewModel(selectedItem);
+            _detailsViewModel = new ItemDetailViewModel(selectedItem.Item);
             _detailsViewModel.OnFinished += OnFinished;
 
             OnNavigateToDetails(_detailsViewModel);
         }
 
-        void OnFinished(Item item)
+        private void OnFinished(Item item)
         {
             _detailsViewModel.OnFinished -= OnFinished;
+        }
+    }
+
+    public class EventItemViewModel : ObservableObject
+    {
+        private bool _isSelected;
+
+        public EventItemViewModel(Item item)
+        {
+            Item = item;
+        }
+
+        public Item Item { get; }
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set => SetProperty(ref _isSelected, value);
         }
     }
 }

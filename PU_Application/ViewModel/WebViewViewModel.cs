@@ -16,7 +16,7 @@ namespace PU_Application.ViewModel
             Items = Droid.Data.IcalParser.Parse();
         }
 
-        public String MazeUrl()
+        public string MazeUrl()
         {
             return Item.MazeUrl;
         }

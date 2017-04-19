@@ -26,7 +26,9 @@ namespace PU_Application.Model
 			set => SetProperty(ref _mazeUrl, value);
 		}
 
-		public string Time
+	    public string MazeUrlEmbed => _mazeUrl?.Replace(@"use.mazemap.com/?", @"use.mazemap.com/embed.html?");
+
+        public string Time
 		{
 			get => _time;
 			set => SetProperty(ref _time, value);
