@@ -19,14 +19,16 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Padding="10" BackgroundColor="Orange">
+                                <StackLayout Margin="0,0,0,3" Padding="10" BackgroundColor="Orange">
                                     <Label Text="{Binding Item.Text}" LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
                                     <Label Text="{Binding Item.Room}" LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}" FontSize="10" />
-                                    <Label Text="{Binding Item.Description}" LineBreakMode="NoWrap"
+                                    <Label Text="{Binding Item.TimeStr}" LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />
-                                    <WebView Source="{Binding Item.MazeUrlEmbed}" IsVisible="{Binding IsSelected}"
+                                    <Label Text="{Binding Item.DateStr}" LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemDetailTextStyle}" FontSize="10" />
+                                    <WebView Navigated="WebView_OnNavigated" Source="{Binding Item.MazeUrlEmbed}" IsVisible="{Binding IsSelected}"
                                              HeightRequest="200" />
                                 </StackLayout>
                             </ViewCell>

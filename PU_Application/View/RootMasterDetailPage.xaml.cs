@@ -15,8 +15,6 @@ namespace PU_Application.View
             _storedPages = new Dictionary<int, Page>();
             RootMasterPage.ListView.ItemSelected += ListView_ItemSelected;
 
-            _storedPages.Add(0, Detail);
-
             MasterBehavior = MasterBehavior.Popover;
         }
 

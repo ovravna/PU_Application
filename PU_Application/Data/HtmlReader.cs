@@ -8,17 +8,17 @@ namespace PU_Application.Droid.Data
 {
     public class HtmlReader
     {
-        static string url = "https://ntnu.1024.no/2017/spring/ravna";
+        private const string url = "https://ntnu.1024.no/2017/spring/{0}";
         static string[] days = {"mandag", "tirsdag", "onsdag", "torsdag", "fredag"};
 
 
-        public static Dictionary<string, Lecture> GetLectures() {
+        public static Dictionary<string, Lecture> GetLectures(string username) {
             var lectures = new Dictionary<string, Lecture>();
 
             var document = new HtmlDocument();
 //            var downloader = new HttpDownloader(url, null, null); 
 
-            string htmlString = new WebClient().DownloadString(url);
+            string htmlString = new WebClient().DownloadString(string.Format(url, username));
             document.LoadHtml(htmlString);
             var node = document.DocumentNode
                 .ChildNodes["html"].ChildNodes["body"];

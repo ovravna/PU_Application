@@ -14,7 +14,7 @@
       BarTextColor="White"
       BarBackgroundColor="{StaticResource Primary}">
             <x:Arguments>
-                <pages:BrowseItemsPage />
+                <pages:SettingsPage />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

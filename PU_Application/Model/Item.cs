@@ -66,5 +66,8 @@ namespace PU_Application.Model
 			get => _description;
 			set => SetProperty(ref _description, value);
 		}
+
+	    public string TimeStr => Date.Value.ToString("t");
+	    public string DateStr => Date.Value.ToString("D");
 	}
 }

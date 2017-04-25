@@ -16,10 +16,10 @@ namespace PU_Application.View
             {
                 await Navigation.PushAsync(new DetailPage(detailsViewModel));
             };
-            
+
         }
 
-        void OnItemSelected (object sender, SelectedItemChangedEventArgs args)
+        void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as Item;
             if (item == null)
@@ -29,6 +29,12 @@ namespace PU_Application.View
 
             // Manually deselect item
             ListViewItems.SelectedItem = null;
+        }
+
+        private void WebView_OnNavigated(object sender, WebNavigatedEventArgs e)
+        {
+            var webView = (WebView) sender;
+            webView.Eval("var x = document.getElementById('responsive-card-container').style.visibility = 'hidden';");
         }
     }
 }

@@ -19,7 +19,7 @@ namespace PU_Application.ViewModel
 		{
 			Title = item.Text;
 			Item = item;
-			Items = Droid.Data.IcalParser.Parse();
+			Items = Droid.Data.IcalParser.Parse(Settings.Username);
 
 			GoToMazeMapCommand = new Command<string>(ExecuteGoToMazeMapCommand);
 		}

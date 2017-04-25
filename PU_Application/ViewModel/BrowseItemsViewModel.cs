@@ -15,7 +15,7 @@ namespace PU_Application.ViewModel
         public BrowseItemsViewModel()
         {
             Title = "Events";
-            Items = new ObservableRangeCollection<EventItemViewModel>(EventParser.Parse().Select(e => new EventItemViewModel(e)));
+            Items = new ObservableRangeCollection<EventItemViewModel>(EventParser.Parse(Settings.Username).Select(e => new EventItemViewModel(e)));
             GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
         }
 

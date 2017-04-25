@@ -24,7 +24,7 @@ namespace PU_Application.ViewModel
 		public CalenderViewModel()
 		{
 			Title = "Calender";
-			Items = EventParser.Parse();
+			Items = EventParser.Parse(Settings.Username);
 			GoToDetailsCommand = new Command<string>(ExecuteGoToDetailsCommand);
 		}
 

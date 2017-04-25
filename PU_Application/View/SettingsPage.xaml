@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PU_Application.View.SettingsPage">
+    
+    <StackLayout>
+        <Label Text="Settings" FontSize="20" FontAttributes="Bold" />
+        <Entry Placeholder="your NTNU username" Text="{Binding Username}" />
+    </StackLayout>
+</ContentPage>

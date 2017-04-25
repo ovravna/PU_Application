@@ -11,14 +11,13 @@ namespace PU_Application.Droid.Data
 {
     public static class IcalParser
     {
-        public static ObservableRangeCollection<Item> Parse() {
-
-            // TODO: username to settting
-            var icalText = Ntnu1024.GetCalendar("ravna");
+        public static ObservableRangeCollection<Item> Parse(string username)
+        {
+            var icalText = Ntnu1024.GetCalendar(username);
             var calendars = Calendar.LoadFromStream(new StringReader(icalText));
 
             var occurrences = calendars
-                .GetOccurrences(DateTime.Now, DateTime.Today.AddDays(7))
+                .GetOccurrences(DateTime.Now.AddDays(-1), DateTime.Today.AddDays(7))
                 .OrderBy(o => o.Source.Start)
                 .Select(ToItem);
             

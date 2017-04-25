@@ -33,7 +33,8 @@ namespace PU_Application.View
 			MenuItems = new ObservableCollection<MasterMenuItem>(new[]
 			{
 					new MasterMenuItem { Id = 0, Title = "Events", TargetType = typeof(BrowseItemsPage) },
-					new MasterMenuItem { Id = 2, Title = "Calender", TargetType = typeof(CalenderPage) }
+					new MasterMenuItem { Id = 1, Title = "Calender", TargetType = typeof(CalenderPage) },
+					new MasterMenuItem { Id = 2, Title = "Settings", TargetType = typeof(SettingsPage) }
 			});
 		}
 
